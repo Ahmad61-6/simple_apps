@@ -1,20 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'style.dart';
+import 'package:simple_apps/style.dart';
+
 void main(){
   runApp(Myapp());
 }
+
 class Myapp extends StatelessWidget {
   const Myapp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Sum app",
+      title: 'TO DO APP',
       home: HomePage(),
     );
   }
 }
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -23,59 +26,90 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Map<String,double> formValue = {"Num1":0,"Num2":0,};
-  double sum = 0;
+  List toDoList = [];
+  String item = "";
   @override
   Widget build(BuildContext context) {
 
-    myInputOnChange(inputKey, inputValue){
+    myAppOnChange(content){
+        setState(() {
+          item = content;
+        });
+    }
+
+addItem(){
       setState(() {
-        formValue.update(inputKey, (value) => double.parse(inputValue));
+        toDoList.add({'item':item});
       });
-    }
+}
 
-    addAllNumber(){
-    setState(() {
-      sum = formValue['Num1']!+formValue['Num2']!;
-    });
-    }
-
+removeItem(index){
+      setState(() {
+        toDoList.removeAt(index);
+      });
+}
     return Scaffold(
-      appBar: AppBar(title: Text('Sum App'),),
-      body: Padding(
-        padding: EdgeInsets.all(40),
-        child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text("Sum is: ${sum.toString()} ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-            SizedBox(height: 20,),
-            TextField(
-              onChanged: (value){
-              myInputOnChange("Num1", value);
-              },
-              decoration: AppInputStyle("First Number"),),
-            SizedBox(height: 20,),
-            TextField(
-              onChanged: (value){
-                myInputOnChange("Num2", value);
-            },
-              decoration: AppInputStyle("Second Number"),),
-            SizedBox(height: 20,),
-            Container(
-              width: double.infinity,
-                child: ElevatedButton(
-                  style: AppButton(),
-                    onPressed: (){
-                    addAllNumber();
-                    },
-                    child: Text('ADD') ),
-            ),
-          ],
-        ),
+      appBar: AppBar(title: Text('To Do list'),backgroundColor: Colors.green,),
+      body: Container(
+        padding: EdgeInsets.all(10),
+       child: Column(
+         children: [
+           Expanded(
+             flex: 10,
+               child: Row(
+                 children: [
+                   Expanded(
+                     flex: 70,
+                     child: TextFormField(
+                       onChanged: (content){myAppOnChange(content);},
+
+                       decoration: appInputDecoration("List Item"),
+                     ),
+                   ),
+                   SizedBox(width: 4,),
+                   Expanded(
+                     flex: 30,
+
+                       child: ElevatedButton(
+
+                     style: appButton(),
+                       onPressed: (){
+                       addItem();
+                       },
+
+                       child: Text("Add"))),
+                 ],
+               )),
+           SizedBox(height: 10,),
+           Expanded(
+             flex: 90,
+               child: ListView.builder(
+                 itemCount: toDoList.length,
+                   itemBuilder: (context,index){
+                  return Card(
+                  child: sizeBox(
+                    Row(
+                      children: [
+                        Expanded(flex: 80,child: Text(toDoList[index]["item"].toString())),
+                        Expanded(flex: 20,child: TextButton(onPressed: (){
+                          removeItem(index);
+                        },
+                          child: Icon(Icons.delete,
+                            color: Colors.green,
+                          ),
+                        )
+                        ),
+                      ],
+                    )
+                  ),
+                  );
+               }),
+           ),
+         ],
+       ),
       ),
+      
     );
   }
 }
-
-
 

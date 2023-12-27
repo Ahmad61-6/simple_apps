@@ -1,28 +1,39 @@
 import 'package:flutter/material.dart';
 
-InputDecoration AppInputStyle(label){
+InputDecoration appInputDecoration(label){
   return InputDecoration(
     contentPadding: EdgeInsets.fromLTRB(20, 10, 10, 20),
-    filled: true,
-    fillColor: Colors.white,
-    enabledBorder:  OutlineInputBorder(
-      borderSide: BorderSide(width: 3, color: Colors.greenAccent),
-    ),
+      hoverColor: Colors.indigo.shade200,
     border: OutlineInputBorder(
-        borderSide:  BorderSide(width: 3, color: Colors.amberAccent),
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(
+        color: Colors.green,
+        width: 1.5
+      )
     ),
-    labelText: label
-
+    labelText: label,
   );
 }
 
-
-ButtonStyle AppButton(){
+ButtonStyle appButton(){
   return ElevatedButton.styleFrom(
-      backgroundColor: Colors.green,
-      padding: EdgeInsets.all(22),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      )
+    padding: EdgeInsets.all(20),
+    backgroundColor: Colors.green,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(3))
+    )
+    
+  );
+}
+
+SizedBox sizeBox(child){
+  return SizedBox(
+    height: 50,
+    width: double.infinity,
+    child: Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(8),
+      child: child,
+    ),
   );
 }
