@@ -69,14 +69,7 @@ class _HomePageState extends State<HomePage> {
                     addAllNumber();
                     },
                     child: Text('ADD') ),
-
             ),
-            SizedBox(height: 20,),
-            ElevatedButton(
-              style: AppButton(),
-                onPressed: (){
-                addAllNumber();
-                }, child: Text("Reset"))
           ],
         ),
       ),
