@@ -1,16 +1,3 @@
-# simple_apps
+![image](https://github.com/Ahmad61-6/simple_apps/assets/130034466/92232f2a-f4e5-4e0d-b765-c9846bd8f7ce)
+![image](https://github.com/Ahmad61-6/simple_apps/assets/130034466/7470f00a-d985-481e-b6de-e2a34321c868)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
