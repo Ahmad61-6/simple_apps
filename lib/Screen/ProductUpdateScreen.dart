@@ -1,19 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:simple_apps/Screen/ProductGridViewScreen.dart';
 import '../RestAPI/RestClient.dart';
 
 import '../Style/style.dart';
+import 'ProductGridViewScreen.dart';
 
-class ProductCreateScreen extends StatefulWidget {
+
+class ProductUpdateScreen extends StatefulWidget {
+  final Map productItem;
+  const ProductUpdateScreen(this.productItem);
   @override
-  State<ProductCreateScreen> createState() => _ProductCreateScreenState();
+  State<ProductUpdateScreen> createState() => _ProductUpdateScreenState();
 }
 
-class _ProductCreateScreenState extends State<ProductCreateScreen> {
+class _ProductUpdateScreenState extends State<ProductUpdateScreen> {
+
 
   Map<String,String> FormValues={"Img":"", "ProductCode":"", "ProductName":"", "Qty":"", "TotalPrice":"", "UnitPrice":""};
+
   bool Loading=false;
+
+
+
+  @override
+  void initState(){
+    setState(() {
+      FormValues.update("Img", (value) => widget.productItem['Img']);
+      FormValues.update("ProductCode", (value) =>  widget.productItem['ProductCode']);
+      FormValues.update("ProductName", (value) => widget.productItem['ProductName']);
+      FormValues.update("Qty", (value) => widget.productItem['Qty']);
+      FormValues.update("TotalPrice", (value) => widget.productItem['TotalPrice']);
+      FormValues.update("UnitPrice", (value) =>widget.productItem['UnitPrice']);
+    });
+  }
+
 
 
   InputOnChange(MapKey, Textvalue){
@@ -21,6 +41,7 @@ class _ProductCreateScreenState extends State<ProductCreateScreen> {
       FormValues.update(MapKey, (value) => Textvalue);
     });
   }
+
 
   FormOnSubmit() async{
     if(FormValues['Img']!.length==0){
@@ -45,19 +66,24 @@ class _ProductCreateScreenState extends State<ProductCreateScreen> {
       setState(() {
         Loading=true;
       });
-      await ProductCreateRequest(FormValues);
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (builder)=> ProductGridViewScreen()), (route) => false);
-      setState(() {
-        Loading=false;
-      });
+      await ProductUpdateRequest(FormValues,widget.productItem['_id']);
+
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context)=> ProductGridViewScreen()),
+              (Route route)=>false
+      );
     }
   }
+
+
+
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Create Product'),),
+      appBar: AppBar(title: Text('Update Product'),),
       body: Stack(
         children: [
           screenBackGround(context),
@@ -68,51 +94,51 @@ class _ProductCreateScreenState extends State<ProductCreateScreen> {
                   children: [
 
                     TextFormField(
+                      initialValue:FormValues['ProductName'],
                       onChanged: (Textvalue){
                         InputOnChange("ProductName",Textvalue);
                       },
                       decoration: AppInputDecoration('Product Name'),
-                      onEditingComplete: () => FocusScope.of(context).nextFocus(),
                     ),
 
                     SizedBox(height: 20),
 
                     TextFormField(
+                      initialValue:FormValues['ProductCode'],
                       onChanged: (Textvalue){
                         InputOnChange("ProductCode",Textvalue);
                       },
                       decoration: AppInputDecoration('Product Code'),
-                      onEditingComplete: () => FocusScope.of(context).nextFocus(),
                     ),
 
                     SizedBox(height: 20),
 
                     TextFormField(
+                      initialValue:FormValues['Img'],
                       onChanged: (Textvalue){
                         InputOnChange("Img",Textvalue);
                       },
                       decoration: AppInputDecoration('Product Image'),
-                      onEditingComplete: () => FocusScope.of(context).nextFocus(),
                     ),
 
                     SizedBox(height: 20),
 
                     TextFormField(
+                      initialValue:FormValues['UnitPrice'],
                       onChanged: (Textvalue){
                         InputOnChange("UnitPrice",Textvalue);
                       },
                       decoration: AppInputDecoration('Unit Price'),
-                      onEditingComplete: () => FocusScope.of(context).nextFocus(),
                     ),
 
                     SizedBox(height: 20),
 
                     TextFormField(
+                      initialValue:FormValues['TotalPrice'],
                       onChanged: (Textvalue){
                         InputOnChange("TotalPrice",Textvalue);
                       },
                       decoration: AppInputDecoration('Total Price'),
-                      onEditingComplete: () => FocusScope.of(context).nextFocus(),
                     ),
 
                     SizedBox(height: 20),
@@ -149,9 +175,6 @@ class _ProductCreateScreenState extends State<ProductCreateScreen> {
                   ],
                 ),
               )))
-
-
-
           )
         ],
       ),
