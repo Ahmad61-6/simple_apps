@@ -6,6 +6,7 @@ import 'package:grocery_shop_app/presentation/ui/state_holders/cart_screen_contr
 import 'package:grocery_shop_app/presentation/ui/state_holders/grocery_item_tile_controller.dart';
 
 import '../widgets/grocery_item_tile.dart';
+import '../widgets/top_right_toast.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -33,7 +34,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 50,
+                height: 20,
               ),
               const Text(
                 'Good Morning,',
@@ -47,20 +48,20 @@ class HomeScreen extends StatelessWidget {
                     fontSize: 45, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 28,
+                height: 20,
               ),
               Divider(
                 color: Colors.grey.shade300,
               ),
               const SizedBox(
-                height: 24,
+                height: 20,
               ),
               const Text(
                 'Fresh items',
                 style: TextStyle(fontSize: 16),
               ),
               const SizedBox(
-                height: 16,
+                height: 10,
               ),
               Expanded(
                 child: GetBuilder<GroceryItemTileController>(
@@ -78,6 +79,11 @@ class HomeScreen extends StatelessWidget {
                         color: controller.shopItems[index][3],
                         onPressed: () {
                           Get.find<CartScreenController>().addToCart(index);
+                          TopRightToast.show(
+                            context: context,
+                            message: "Item added to cart",
+                            color: Colors.green,
+                          );
                         },
                       );
                     },
