@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grocery_shop_app/presentation/ui/screens/home_screen.dart';
-import 'package:grocery_shop_app/presentation/utility/assets_path.dart';
+
+import '../../utility/assets_path.dart';
+import 'home_screen.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});

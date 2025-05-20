@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:grocery_shop_app/presentation/ui/state_holders/cart_screen_controller.dart';
+
+import 'cart_screen_controller.dart';
 
 class TotalPriceCalculatorController extends GetxController {
   String calculateTotalPrice() {

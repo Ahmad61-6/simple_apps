@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grocery_shop_app/presentation/ui/screens/cart_screen.dart';
-import 'package:grocery_shop_app/presentation/ui/state_holders/cart_screen_controller.dart';
-import 'package:grocery_shop_app/presentation/ui/state_holders/grocery_item_tile_controller.dart';
 
+import '../state_holders/cart_screen_controller.dart';
+import '../state_holders/grocery_item_tile_controller.dart';
 import '../widgets/grocery_item_tile.dart';
 import '../widgets/top_right_toast.dart';
+import 'cart_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
