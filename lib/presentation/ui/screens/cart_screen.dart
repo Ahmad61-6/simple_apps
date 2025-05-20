@@ -16,114 +16,128 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          centerTitle: true,
+          title: Text(
+            "Cart",
+            style: GoogleFonts.notoSerif(
+                fontSize: 20, fontWeight: FontWeight.bold),
+          )),
       body: GetBuilder<CartScreenController>(builder: (controller) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                "My Cart",
-                style: GoogleFonts.notoSerif(
-                    fontSize: 45, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                    itemCount: controller.cartItems.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: ListTile(
-                            title: Text(controller.cartItems[index][0] ?? ''),
-                            subtitle:
-                                Text('\$${controller.cartItems[index][1]}'),
-                            leading: Image.asset(
-                              controller.cartItems[index][2],
-                              height: 40,
-                              width: 60,
-                            ),
-                            trailing: IconButton(
-                              onPressed: () {
-                                controller.deleteItemFromCart(index);
-                              },
-                              icon: const Icon(Icons.cancel),
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(36.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(8),
+        return controller.cartItems.isEmpty
+            ? Center(
+                child: Text(
+                  "No Items found",
+                  style:
+                      GoogleFonts.notoSerif(fontSize: 20, color: Colors.grey),
                 ),
-                padding: const EdgeInsets.all(24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Total Price',
-                          style: TextStyle(color: Colors.grey.shade300),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          '\$${Get.find<TotalPriceCalculatorController>().calculateTotalPrice()}',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Text(
+                      "My Cart",
+                      style: GoogleFonts.notoSerif(
+                          fontSize: 45, fontWeight: FontWeight.bold),
                     ),
-                    Container(
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.builder(
+                          itemCount: controller.cartItems.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: ListTile(
+                                  title: Text(
+                                      controller.cartItems[index][0] ?? ''),
+                                  subtitle: Text(
+                                      '\$${controller.cartItems[index][1]}'),
+                                  leading: Image.asset(
+                                    controller.cartItems[index][2],
+                                    height: 40,
+                                    width: 60,
+                                  ),
+                                  trailing: IconButton(
+                                    onPressed: () {
+                                      controller.deleteItemFromCart(index);
+                                    },
+                                    icon: const Icon(Icons.cancel),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(36.0),
+                    child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      padding: const EdgeInsets.all(12),
-                      child: const Row(
+                      padding: const EdgeInsets.all(24),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Pay now",
-                            style: TextStyle(color: Colors.white),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Total Price',
+                                style: TextStyle(color: Colors.grey.shade300),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                '\$${Get.find<TotalPriceCalculatorController>().calculateTotalPrice()}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: 3,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.white,
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: const EdgeInsets.all(12),
+                            child: const Row(
+                              children: [
+                                Text(
+                                  "Pay now",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.white,
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
-                    )
-                  ],
-                ),
-              ),
-            )
-          ],
-        );
+                    ),
+                  )
+                ],
+              );
       }),
     );
   }

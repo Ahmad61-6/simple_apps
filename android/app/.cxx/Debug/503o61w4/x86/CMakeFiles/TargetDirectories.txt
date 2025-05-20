@@ -1,0 +1,2 @@
+/home/ahmad/StudioProjects/simple_apps/android/app/.cxx/Debug/503o61w4/x86/CMakeFiles/edit_cache.dir
+/home/ahmad/StudioProjects/simple_apps/android/app/.cxx/Debug/503o61w4/x86/CMakeFiles/rebuild_cache.dir
