@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grocery_shop_app/presentation/utility/assets_path.dart';
+
+import '../../utility/assets_path.dart';
 
 class GroceryItemTileController extends GetxController {
   final List _shopItems = [

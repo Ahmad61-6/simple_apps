@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:grocery_shop_app/controller_binders.dart';
-import 'package:grocery_shop_app/presentation/ui/screens/get_started_screen.dart';
+import 'package:simple_apps/presentation/ui/screens/get_started_screen.dart';
+
+import 'controller_binders.dart';
 
 class GroceryShopApp extends StatelessWidget {
   const GroceryShopApp({super.key});

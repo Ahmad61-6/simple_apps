@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grocery_shop_app/presentation/ui/state_holders/cart_screen_controller.dart';
-import 'package:grocery_shop_app/presentation/ui/state_holders/total_price_calculator_controller.dart';
+
+import '../state_holders/cart_screen_controller.dart';
+import '../state_holders/total_price_calculator_controller.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});

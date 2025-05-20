@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:grocery_shop_app/presentation/ui/state_holders/grocery_item_tile_controller.dart';
+
+import 'grocery_item_tile_controller.dart';
 
 class CartScreenController extends GetxController {
   final List _cartItems = [];
